@@ -10,7 +10,7 @@ const Add =(props)=>{
 
 
     const handleChange =(e)=>{
-        setQuestion(...question,[e.target.name]:e.target.value)
+        setQuestion({...question,[e.target.name]:e.target.value})
     }
 
     
