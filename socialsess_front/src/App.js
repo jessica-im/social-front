@@ -7,11 +7,22 @@ const App = () => {
      const getQuestions = () => {
           axios.get('http://localhost:8000/api/questions')
           .then(
-               (response) => setQuestions(response.data)
+               (response) => setQuestions(response.data),
                (err) => console.error(error)
           )
           .catch((error) => console.error(error))
      }
+
+     const handleUpdate = (editQuestion) => {
+          axios.put('http://localhost:8000/api/questions' + editQuestion.id, editQuestion)
+          .then((response) => {
+               getQuestions()
+          })
+     }
+
+     useEffect(() => {
+          getQuestions()
+     }, [])
 
      return (
           <>
@@ -21,6 +32,7 @@ const App = () => {
                          return (
                               <div className="question" key={question.id}>
                                    <h4>{question.question}</h4>
+                                   <Edit handleUpdate={handleUpdate} question={question} />
                               </div>
                          )
                     })}
