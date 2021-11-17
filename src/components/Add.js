@@ -6,6 +6,7 @@ const Add =(props)=>{
 
     const handleSubmit=(e)=>{
         preventDefault()
+        props.handleCreate(question)
     }
 
 
