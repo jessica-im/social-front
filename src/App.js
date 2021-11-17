@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
+import Edit from './components/Edit'
+
 const App = () => {
      let [questions, setQuestions] = useState([])
 
@@ -8,7 +10,7 @@ const App = () => {
           axios.get('http://localhost:8000/api/questions')
           .then(
                (response) => setQuestions(response.data),
-               (err) => console.error(error)
+               (error) => console.error(error)
           )
           .catch((error) => console.error(error))
      }
