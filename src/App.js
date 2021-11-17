@@ -7,7 +7,7 @@ const App = () => {
      let [questions, setQuestions] = useState([])
 
      const getQuestions = () => {
-          axios.get('http://localhost:8000/api/questions')
+          axios.get('https://social-sess-back.herokuapp.com/api/questions')
           .then(
                (response) => setQuestions(response.data),
                (error) => console.error(error)
@@ -16,7 +16,7 @@ const App = () => {
      }
 
      const handleUpdate = (editQuestion) => {
-          axios.put('http://localhost:8000/api/questions' + editQuestion.id, editQuestion)
+          axios.put('https://social-sess-back.herokuapp.com/api/questions' + editQuestion.id, editQuestion)
           .then((response) => {
                getQuestions()
           })
