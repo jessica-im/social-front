@@ -7,7 +7,7 @@ const App = () => {
      const getQuestions = () => {
           axios.get('http://localhost:8000/api/questions')
           .then(
-               (response) => setQuestions(response.data)
+               (response) => setQuestions(response.data),
                (err) => console.error(error)
           )
           .catch((error) => console.error(error))
