@@ -1,1 +1,1 @@
-# social-front
+# social.sess-front
