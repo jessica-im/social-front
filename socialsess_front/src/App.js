@@ -13,6 +13,17 @@ const App = () => {
           .catch((error) => console.error(error))
      }
 
+     const handleUpdate = (editQuestion) => {
+          axios.put('http://localhost:8000/api/questions' + editQuestion.id, editQuestion)
+          .then((response) => {
+               getQuestions()
+          })
+     }
+
+     useEffect(() => {
+          getQuestions()
+     }, [])
+
      return (
           <>
                <h1> hello universe </h1>
@@ -21,6 +32,7 @@ const App = () => {
                          return (
                               <div className="question" key={question.id}>
                                    <h4>{question.question}</h4>
+                                   <Edit handleUpdate={handleUpdate} question={question} />
                               </div>
                          )
                     })}
