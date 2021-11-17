@@ -17,7 +17,7 @@ const App = () => {
      }
 
      const handleCreate = (addQuestion) => {
-          axios.put('https://social-sess-back.herokuapp.com/api/questions', addQuestion)
+          axios.post('https://social-sess-back.herokuapp.com/api/questions', addQuestion)
           .then((response) => {
                console.log(response)
                getQuestions()
@@ -25,14 +25,14 @@ const App = () => {
      }
 
      const handleDelete = (event) => {
-          axios.delete('https://social-sess-back.herokuapp.com/api/questions' + event.target.value)
+          axios.delete('https://social-sess-back.herokuapp.com/api/questions/' + event.target.value)
           .then((response) => {
                getQuestions()
           })
      }
 
      const handleUpdate = (editQuestion) => {
-          axios.put('https://social-sess-back.herokuapp.com/api/questions' + editQuestion.id, editQuestion)
+          axios.put('https://social-sess-back.herokuapp.com/api/questions/' + editQuestion.id, editQuestion)
           .then((response) => {
                getQuestions()
           })
