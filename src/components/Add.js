@@ -5,7 +5,7 @@ const Add =(props)=>{
     const [question,setQuestion]=useState(emptyQuestion)
 
     const handleSubmit=(e)=>{
-        preventDefault()
+        e.preventDefault()
         props.handleCreate(question)
     }
 
