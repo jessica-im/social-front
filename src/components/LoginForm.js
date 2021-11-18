@@ -14,15 +14,15 @@ const LoginForm = (props) => {
        setUserObj({ ...userObj, [event.target.name]: event.target.value })
   }
 
-  const getUsers = () => {
-    axios
-      .get('https://social-sess-back.herokuapp.com/api/useraccount')
-      .then(
-        (response) => setUser(response.data),
-        (error) => console.log(error)
-      )
-      .catch((error) => console.log(error))
-  }
+  // const getUsers = () => {
+  //   axios
+  //     .get('https://social-sess-back.herokuapp.com/api/useraccount')
+  //     .then(
+  //       (response) => setUser(response.data),
+  //       (error) => console.log(error)
+  //     )
+  //     .catch((error) => console.log(error))
+  // }
 
   const handleLogin = (userObj) => {
     axios
@@ -63,14 +63,16 @@ const LoginForm = (props) => {
 
   return (
     <div>
-      <h4>Login</h4>
       <button onClick={handleLogout}>Logout</button>
+      <br/>
+      <br/>
+      <h4>Login</h4>
       <form onSubmit={handleSubmit}>
-        <input type="text" name='username' placeholder="Username" onChange={handleChange}/>
+        <input type="text" name='username' placeholder="Username" onChange={handleChange} value={userObj.username}/>
         <br/>
-        <input type="password" name='password' placeholder="Password" onChange={handleChange}/>
+        <input type="password" name='password' placeholder="Password" onChange={handleChange} value={userObj.password}/>
         <br/>
-        <input type="submit" value="Login" class="button"/>
+        <input type="submit" value="Login" />
       </form>
     </div>
   )
