@@ -4,6 +4,7 @@ import axios from 'axios'
 import Add from './components/Add'
 import Edit from './components/Edit'
 import LoginForm from './components/LoginForm'
+import NewAccountForm from './components/NewAccountForm'
 
 const App = () => {
      let [questions, setQuestions] = useState([])
@@ -51,6 +52,7 @@ const App = () => {
                <h1> hello universe </h1>
                {signedIn ? <Add handleCreate={handleCreate} /> : null}
                <LoginForm setSignedIn={setSignedIn} user={user} />
+               <NewAccountForm />
                <div className="questions">
                     {questions.map((question) => {
                          return (
