@@ -5,6 +5,7 @@ import Add from './components/Add'
 import Edit from './components/Edit'
 import LoginForm from './components/LoginForm'
 import AddComment from './components/addComment'
+import NewAccountForm from './components/NewAccountForm'
 
 const App = () => {
      let [questions, setQuestions] = useState([])
@@ -73,6 +74,7 @@ const App = () => {
                <h1> hello universe </h1>
                {signedIn ? <Add handleCreate={handleCreate} /> : null}
                <LoginForm setSignedIn={setSignedIn} user={user} setUser={setUser}/>
+               <NewAccountForm />
                <div className="questions">
                     {questions.map((question) => {
                          return (
