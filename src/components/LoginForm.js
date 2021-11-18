@@ -11,7 +11,7 @@ const LoginForm = (props) => {
   let [userObj, setUserObj] = useState( {username: '', password: ''})
 
   const handleChange = (event) => {
-       setUser({ ...user, [event.target.name]: event.target.value })
+       setUserObj({ ...userObj, [event.target.name]: event.target.value })
   }
 
   const getUsers = () => {
@@ -27,12 +27,11 @@ const LoginForm = (props) => {
   const handleLogin = (userObj) => {
     axios
       .put(
-        'https://social-sess-back.herokuapp.com/api/login', userObj
+        'https://social-sess-back.herokuapp.com/api/useraccount/login', userObj
       ).then((response) => {
-        if(response.data.props.user.username) {
+        if(response.data.username) {
           setToggleError(false)
           setErrorMessage('')
-          setCurrentUser(response.data)
           props.setSignedIn(true)
           handleToggleLogout()
         } else {
@@ -43,7 +42,8 @@ const LoginForm = (props) => {
   }
 
   const handleLogout = () => {
-    setCurrentUser({})
+    props.setSignedIn(false)
+    setUserObj({username: '', password: ''})
     handleToggleLogout()
   }
 
@@ -58,14 +58,13 @@ const LoginForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    setUserObj({...userObj, [event.target.name]: event.target.value})
     handleLogin(userObj)
   }
 
   return (
     <div>
       <h4>Login</h4>
-
+      <button onClick={handleLogout}>Logout</button>
       <form onSubmit={handleSubmit}>
         <input type="text" name='username' placeholder="Username" onChange={handleChange}/>
         <br/>

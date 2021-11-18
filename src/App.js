@@ -50,7 +50,7 @@ const App = () => {
           <>
                <h1> hello universe </h1>
                {signedIn ? <Add handleCreate={handleCreate} /> : null}
-               <LoginForm signedIn={signedIn} user={user} />
+               <LoginForm setSignedIn={setSignedIn} user={user} />
                <div className="questions">
                     {questions.map((question) => {
                          return (
