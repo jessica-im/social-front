@@ -3,10 +3,12 @@ import axios from 'axios'
 
 import Add from './components/Add'
 import Edit from './components/Edit'
+import LoginForm from './components/LoginForm'
 
 const App = () => {
      let [questions, setQuestions] = useState([])
      let [signedIn,setSignedIn]=useState(false)
+     let [user, setUser] = useState([])
 
 
      const getQuestions = () => {
@@ -48,6 +50,7 @@ const App = () => {
           <>
                <h1> hello universe </h1>
                {signedIn ? <Add handleCreate={handleCreate} /> : null}
+               <LoginForm signedIn={signedIn} user={user} />
                <div className="questions">
                     {questions.map((question) => {
                          return (
