@@ -34,6 +34,7 @@ const LoginForm = (props) => {
           setErrorMessage('')
           props.setSignedIn(true)
           handleToggleLogout()
+          props.setUser(response.data.username)
         } else {
           setErrorMessage(response.data)
           setToggleError(true)
