@@ -6,6 +6,8 @@ import Edit from './components/Edit'
 
 const App = () => {
      let [questions, setQuestions] = useState([])
+     let [signedIn,setSignedIn]=useState(false)
+
 
      const getQuestions = () => {
           axios.get('https://social-sess-back.herokuapp.com/api/questions')
@@ -45,14 +47,14 @@ const App = () => {
      return (
           <>
                <h1> hello universe </h1>
-               <Add handleCreate={handleCreate} />
+               {signedIn ? <Add handleCreate={handleCreate} /> : null}
                <div className="questions">
                     {questions.map((question) => {
                          return (
                               <div className="question" key={question.id}>
                                    <h4>{question.question}</h4>
-                                   <Edit handleUpdate={handleUpdate} question={question} />
-                                   <button onClick={handleDelete} value={question.id}>X</button>
+                                   {signedIn ? <Edit handleUpdate={handleUpdate} question={question} />:null}
+                                   {signedIn ? <button onClick={handleDelete} value={question.id}>X</button>:null}
                               </div>
                          )
                     })}
