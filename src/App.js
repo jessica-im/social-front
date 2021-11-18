@@ -4,13 +4,14 @@ import axios from 'axios'
 import Add from './components/Add'
 import Edit from './components/Edit'
 import LoginForm from './components/LoginForm'
+import AddComment from './components/addComment'
 import NewAccountForm from './components/NewAccountForm'
 
 const App = () => {
      let [questions, setQuestions] = useState([])
      let [signedIn,setSignedIn]=useState(false)
      let [user, setUser] = useState([])
-
+     let [comments,setComments]=useState([])
 
      const getQuestions = () => {
           axios.get('https://social-sess-back.herokuapp.com/api/questions')
@@ -43,6 +44,27 @@ const App = () => {
           })
      }
 
+     const getComment=(comment)=>{
+          axios.get('http://social-sess-back.herokuapp.com/api/comments/' + comment).then((response)=>{
+               setComments(response.data)
+          })
+     }
+
+     const deleteComment = (event) => {
+          axios.delete('https://social-sess-back.herokuapp.com/api/comments/' + event.target.value)
+          .then((response) => {
+               getComment()
+          })
+     }
+
+     const createComment = (addComment,question) => {
+          axios.post('https://social-sess-back.herokuapp.com/api/comments', addComment)
+          .then((response) => {
+          })
+     }
+
+     
+
      useEffect(() => {
           getQuestions()
      }, [])
@@ -51,7 +73,7 @@ const App = () => {
           <>
                <h1> hello universe </h1>
                {signedIn ? <Add handleCreate={handleCreate} /> : null}
-               <LoginForm setSignedIn={setSignedIn} user={user} />
+               <LoginForm setSignedIn={setSignedIn} user={user} setUser={setUser}/>
                <NewAccountForm />
                <div className="questions">
                     {questions.map((question) => {
@@ -60,6 +82,17 @@ const App = () => {
                                    <h4>{question.question}</h4>
                                    {signedIn ? <Edit handleUpdate={handleUpdate} question={question} />:null}
                                    {signedIn ? <button onClick={handleDelete} value={question.id}>X</button>:null}
+                                   <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/>
+                                   {question.comment.map((comment)=>{
+                                        return (
+                                             <div key={comment}>
+                                             {getComment(comment)}
+                                             {comments.comment}
+                                             <button onClick={deleteComment} value={comments.id}>Delete Comment</button>
+                                             
+                                             </div>
+                                        )
+                                   })}
                               </div>
                          )
                     })}
