@@ -12,6 +12,7 @@ const App = () => {
      let [signedIn,setSignedIn]=useState(false)
      let [user, setUser] = useState([])
      let [comments,setComments]=useState([])
+     let [userObj, setUserObj] = useState( {username: '', password: ''})
 
      const getQuestions = () => {
           axios.get('https://social-sess-back.herokuapp.com/api/questions')
@@ -70,6 +71,10 @@ const App = () => {
           })
      }
 
+     const handleLogout = () => {
+          setSignedIn(false)
+          setUserObj({username: '', password: ''})
+        }
 
      useEffect(() => {
           getQuestions()
@@ -80,8 +85,9 @@ const App = () => {
           <>
                <h1> hello universe </h1>
                {signedIn ? <Add handleCreate={handleCreate} /> : null}
-               <LoginForm setSignedIn={setSignedIn} user={user} setUser={setUser}/>
-               <NewAccountForm />
+               {signedIn ? null : <LoginForm userObj={userObj}setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}
+               {signedIn ? null:<NewAccountForm />}
+               {signedIn ? <button onClick={handleLogout}>Log Out</button>: null}
                <div className="questions">
                     {questions.map((question) => {
                          return (
