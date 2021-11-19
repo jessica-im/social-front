@@ -71,7 +71,6 @@ const App = () => {
      }
 
 
-
      useEffect(() => {
           getQuestions()
           getComment()
@@ -93,13 +92,13 @@ const App = () => {
                                    <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/>
                                    {comments.map((comment)=>{
                                         return (
-                                             <div key={comment.id}>
+                                             <>
                                              {question.id === comment.question[0] ?
                                              <div key={comment.id}>
                                              {comment.comment}
                                              <button onClick={deleteComment} value={comment.id}>Delete Comment</button>
                                              </div>: null }
-                                             </div>
+                                             </>
                                         )
                                    })}
                               </div>
