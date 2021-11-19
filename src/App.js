@@ -71,7 +71,6 @@ const App = () => {
      }
 
 
-
      useEffect(() => {
           getQuestions()
           getComment()
@@ -94,7 +93,7 @@ const App = () => {
                                    {comments.map((comment)=>{
                                         return (
                                              <>
-                                             {question.id === comment.question[0] ? 
+                                             {question.id === comment.question[0] ?
                                              <div key={comment.id}>
                                              {getComment(comment, question.id)}
                                              {comment.comment}
