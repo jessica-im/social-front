@@ -64,7 +64,6 @@ const App = () => {
      }
 
      
-
      useEffect(() => {
           getQuestions()
      }, [])
@@ -89,7 +88,7 @@ const App = () => {
                                              {getComment(comment)}
                                              {comments.comment}
                                              <button onClick={deleteComment} value={comments.id}>Delete Comment</button>
-                                             
+
                                              </div>
                                         )
                                    })}
