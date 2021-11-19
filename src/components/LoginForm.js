@@ -2,69 +2,40 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const LoginForm = (props) => {
-  const [toggleLogout, setToggleLogout] = useState(false)
 
-
-  let [userObj, setUserObj] = useState( {username: '', password: ''})
 
   const handleChange = (event) => {
-       setUserObj({ ...userObj, [event.target.name]: event.target.value })
+       props.setUserObj({ ...props.userObj, [event.target.name]: event.target.value })
   }
 
-  // const getUsers = () => {
-  //   axios
-  //     .get('https://social-sess-back.herokuapp.com/api/useraccount')
-  //     .then(
-  //       (response) => setUser(response.data),
-  //       (error) => console.log(error)
-  //     )
-  //     .catch((error) => console.log(error))
-  // }
 
   const handleLogin = (userObj) => {
     axios
       .put(
-        'https://social-sess-back.herokuapp.com/api/useraccount/login', userObj
+        'https://social-sess-back.herokuapp.com/api/useraccount/login', props.userObj
       ).then((response) => {
         if(response.data.username) {
           props.setSignedIn(true)
-          handleToggleLogout()
           props.setUser(response.data.username)
         } else {
         }
       })
   }
 
-  const handleLogout = () => {
-    props.setSignedIn(false)
-    setUserObj({username: '', password: ''})
-    handleToggleLogout()
-  }
-
-  const handleToggleLogout = () => {
-    if (toggleLogout) {
-      setToggleLogout(false)
-    } else {
-      setToggleLogout(true)
-    }
-  }
-
-
   const handleSubmit = (event) => {
     event.preventDefault()
-    handleLogin(userObj)
+    handleLogin(props.userObj)
   }
 
   return (
     <div>
-      <button onClick={handleLogout}>Logout</button>
       <br/>
       <br/>
       <h4>Login</h4>
       <form onSubmit={handleSubmit}>
-        <input type="text" name='username' placeholder="Username" onChange={handleChange} value={userObj.username}/>
+        <input type="text" name='username' placeholder="Username" onChange={handleChange} value={props.userObj.username}/>
         <br/>
-        <input type="password" name='password' placeholder="Password" onChange={handleChange} value={userObj.password}/>
+        <input type="password" name='password' placeholder="Password" onChange={handleChange} value={props.userObj.password}/>
         <br/>
         <input type="submit" value="Login" />
       </form>
