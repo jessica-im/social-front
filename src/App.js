@@ -95,7 +95,6 @@ const App = () => {
                                              <>
                                              {question.id === comment.question[0] ?
                                              <div key={comment.id}>
-                                             {getComment(comment, question.id)}
                                              {comment.comment}
                                              <button onClick={deleteComment} value={comment.id}>Delete Comment</button>
                                              </div>: null }
