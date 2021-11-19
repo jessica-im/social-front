@@ -8,12 +8,6 @@ const NewAccountForm = (props) => {
        setNewUser({ ...newUser, [event.target.name]: event.target.value })
   }
 
-  const createUser = (event) => {
-    event.preventDefault()
-    setNewUser({...newUser, [event.target.name]: event.target.value})
-    handleCreateUser(newUser)
-  }
-
   const handleCreateUser = (addUser) => {
     axios
       .post('https://social-sess-back.herokuapp.com/api/useraccount', addUser)
