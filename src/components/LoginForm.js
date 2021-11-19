@@ -2,11 +2,8 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const LoginForm = (props) => {
-  const [user, setUser] = useState({ ...props.user})
-  const [toggleError, setToggleError] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
   const [toggleLogout, setToggleLogout] = useState(false)
-  const [currentUser, setCurrentUser] = useState({})
+
 
   let [userObj, setUserObj] = useState( {username: '', password: ''})
 
@@ -30,14 +27,10 @@ const LoginForm = (props) => {
         'https://social-sess-back.herokuapp.com/api/useraccount/login', userObj
       ).then((response) => {
         if(response.data.username) {
-          setToggleError(false)
-          setErrorMessage('')
           props.setSignedIn(true)
           handleToggleLogout()
           props.setUser(response.data.username)
         } else {
-          setErrorMessage(response.data)
-          setToggleError(true)
         }
       })
   }
