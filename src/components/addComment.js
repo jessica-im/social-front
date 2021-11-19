@@ -2,21 +2,18 @@ import React,{useState} from 'react'
 
 
 const AddComment = (props)=>{
-    let emptyComment={comment:''}
+    let emptyComment={comment:'', question: []}
     const [comment,setComment]=useState(emptyComment)
-    const [question, setQuestion] = useState({ ...props.question })
 
     const handleSubmit=(e)=>{
         e.preventDefault()
         props.createComment(comment)
-        props.handleUpdate()
     }
 
     const handleChange =(e)=>{
-        setComment({...comment,[e.target.name]:e.target.value})
-        // setQuestion({...question,comment:})
+        setComment({comment:e.target.value, question: [props.question.id]})
     }
-    
+
 
     return(
         <>
