@@ -47,7 +47,7 @@ const App = () => {
 
 
      const getComment=()=>{
-          axios.get('http://social-sess-back.herokuapp.com/api/comments').then((response)=>{
+          axios.get('https://social-sess-back.herokuapp.com/api/comments').then((response)=>{
                console.log(response.data)
                setComments(response.data)
                console.log(comments)
