@@ -71,7 +71,6 @@ const App = () => {
      }
 
 
-
      useEffect(() => {
           getQuestions()
           getComment()
