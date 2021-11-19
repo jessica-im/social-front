@@ -45,20 +45,6 @@ const App = () => {
           })
      }
 
-     let [questionComment, setQuestionComment] = useState([])
-
-     const getComments=(comment, questionID)=>{
-          axios.get('http://social-sess-back.herokuapp.com/api/comments').then((response)=>{
-               console.log(response.data)
-               console.log(questionID)
-               for (let i = 0; i < response.data.length - 1; i++) {
-                 if (questionID === response.data[i].question[2]) {
-                   setQuestionComment(response.data)
-                 }
-               }
-
-          })
-     }
 
      const getComment=()=>{
           axios.get('http://social-sess-back.herokuapp.com/api/comments').then((response)=>{
@@ -107,12 +93,14 @@ const App = () => {
                                    <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/>
                                    {comments.map((comment)=>{
                                         return (
+                                             <>
+                                             {question.id === comment.question[0] ? 
                                              <div key={comment.id}>
-                                             {getComments(comment, question.id)}
+                                             {getComment(comment, question.id)}
                                              {comment.comment}
                                              <button onClick={deleteComment} value={comment.id}>Delete Comment</button>
-
-                                             </div>
+                                             </div>: null }
+                                             </>
                                         )
                                    })}
                               </div>
