@@ -18,7 +18,7 @@ const App = () => {
           axios.get('https://social-sess-back.herokuapp.com/api/questions')
           .then(
                (response) => setQuestions(response.data),
-               console.log(questions),
+               // console.log(questions),
                (error) => console.error(error)
           )
           .catch((error) => console.error(error))
@@ -27,7 +27,7 @@ const App = () => {
      const handleCreate = (addQuestion) => {
           axios.post('https://social-sess-back.herokuapp.com/api/questions', addQuestion)
           .then((response) => {
-               console.log(response)
+               // console.log(response)
                getQuestions()
           })
      }
@@ -49,9 +49,9 @@ const App = () => {
 
      const getComment=()=>{
           axios.get('https://social-sess-back.herokuapp.com/api/comments').then((response)=>{
-               console.log(response.data)
+               // console.log(response.data)
                setComments(response.data)
-               console.log(comments)
+               // console.log(comments)
 
           })
      }
@@ -64,7 +64,7 @@ const App = () => {
      }
 
      const createComment = (addComment,question) => {
-        console.log(addComment)
+        // console.log(addComment)
           axios.post('https://social-sess-back.herokuapp.com/api/comments', addComment)
           .then((response) => {
             getComment()
@@ -76,7 +76,12 @@ const App = () => {
           setUserObj({username: '', password: ''})
         }
 
+     const randomId = () => {
+          // return Math.floor(Math.random())
+          console.log(Math.floor(Math.random()))
+     }
 
+     randomId()
 
      useEffect(() => {
           getQuestions()
@@ -85,39 +90,52 @@ const App = () => {
 
      return (
           <>
-               <div className="nav">
+               <div className="signUp-logIn">
                     <div>sign up {signedIn ? null: <NewAccountForm />}</div>
-                    <h1> social.sesh </h1>
                     <div>log in {signedIn ? null : <LoginForm userObj={userObj} setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}</div>
-                    {signedIn ? <button onClick={handleLogout}>Log Out</button>: null}
+                    {signedIn ? <div onClick={handleLogout}>logout</div>: null}
+               </div>
+               <div className="title">
+                    <h1> social.sesh </h1>
                </div>
 
                {signedIn ? <Add handleCreate={handleCreate} /> : null}
 
                <div className="questions-container">
                     {questions.map((question) => {
-                         return (
-                              <div className="question" key={question.id}>
-                                   <h4>{question.question}</h4>
-                                   {signedIn ? <Edit handleUpdate={handleUpdate} question={question} />:null}
-                                   {signedIn ? <button onClick={handleDelete} value={question.id}>X</button>:null}
-                                   <details>
-                                        <summary>comments</summary>
-                                        <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/>
-                                        {comments.map((comment)=>{
-                                             return (
-                                                  <>
-                                                  {question.id === comment.question[0] ?
-                                                  <div key={comment.id}>
-                                                  {comment.comment}
-                                                  <button onClick={deleteComment} value={comment.id}>Delete Comment</button>
-                                                  </div>: null }
-                                                  </>
-                                             )
-                                        })}
-                                   </details>
-                              </div>
-                         )
+                         if (question.id === 3) {
+                              return (
+                                   <div className="question" key={question.id}>
+                                        <div className="question-div">
+                                             <h4>{question.question}</h4>
+                                        </div>
+                                        <details className="comments-detail">
+                                             <summary className="comments-summary">comments</summary>
+                                             <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/>
+                                             <div className="comments-container">
+                                                  {comments.map((comment)=>{
+                                                       return (
+                                                            <>
+                                                            <div className="comments-container">
+                                                                 {question.id === comment.question[0] ?
+                                                                 <div className="comment-container" key={comment.id}>
+                                                                      <div className="comment">{comment.comment}</div>
+                                                                      <button className="deleteComment" onClick={deleteComment} value={comment.id}>X</button>
+                                                                 </div>: null }
+                                                            </div>
+                                                            </>
+                                                       )
+                                                  })}
+                                             </div>
+                                        </details>
+                                        <div className="editDelete">
+                                             {signedIn ? <Edit handleUpdate={handleUpdate} question={question} />:null}
+                                             {signedIn ? <button className="delete" onClick={handleDelete} value={question.id}>X</button>:null}
+                                        </div>
+                                   </div>
+                              )
+                         }
+
                     })}
                </div>
           </>

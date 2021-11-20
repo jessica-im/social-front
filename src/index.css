@@ -14,17 +14,66 @@ code {
 
 h1 {
      font-family: 'Rampart One';
-     font-size: 100px;
+     font-size: 40px;
      margin: 0px;
-
 }
 
-.nav {
+.title {
+     background-color: black;
+     color: white;
+     padding-bottom: 8px;
+}
+
+.signUp-logIn {
+     display: flex;
+     justify-content: space-between;
+     background-color: white;
+     color: black;
+     padding: 8px;
+     font-family: 'Pangolin';
+}
+
+.title {
      display: flex;
      align-items: center;
-     justify-content: space-between;
-     padding-left: 20px;
-     padding-right: 20px;
+     justify-content: center;
+}
+
+.add-question-container {
+     display: flex;
+     justify-content: center;
+     text-transform: lowercase;
+     padding: 50px;
+}
+
+.add-question {
+     display: flex;
+     flex-flow: column;
+     align-items: center;
+     gap: 10px;
+     font-family: 'Pangolin';
+     font-weight: 600;
+     font-size: 25px;
+}
+
+.qField {
+     border: 1px solid white;
+     border-bottom: 1px solid black;
+     font-family: 'Pangolin';
+     font-size: 20px;
+}
+
+.addQSubmit {
+     text-transform: lowercase;
+     background-color: black;
+     color: white;
+     padding: 7px 10px 7px 10px;
+     border: 1px solid black;
+     width: 100px;
+     font-family: 'Pangolin';
+     border-radius: 4px;
+     font-size: 16px;
+     font-weight: 600;
 }
 
 .questions-container {
@@ -33,14 +82,105 @@ h1 {
      gap: 20px;
 }
 
+
+
 .question {
+     display: flex;
+     flex-direction: column;
      width: 300px;
+     font-family: 'Pangolin';
+     font-size: 80px;
      text-align: center;
-     border: 1px solid black;
-     border-radius: 4px;
      padding: 20px;
 }
 
-details {
+.question-div {
+     border: 1px solid black;
+     border-radius: 4px;
+}
+
+
+.addESubmit {
+     text-transform: lowercase;
+     background-color: black;
+     color: white;
+     padding: 3px 7px 3px 7px;
+     border: 1px solid black;
+     width: 100px;
+     font-family: 'Pangolin';
+     border-radius: 4px;
+     font-size: 16px;
+     font-weight: 600;
+     margin-left: 10px;
+}
+
+
+.comments-detail {
+     font-size: 20px;
+     border: 1px solid #fdb;
+     padding-bottom: 10px;
+}
+
+.comments-summary {
+     background-color: #fdb;
+}
+
+
+.addComment {
+     margin-top: 10px;
+     margin-bottom: 10px;
+}
+
+
+.comment-container {
+     display: flex;
+     justify-content: space-between;
+     border-bottom: 2px solid #ccc;
+     padding: 10px 5px;
+     margin-left: 10px;
+     margin-right: 10px;
+}
+
+
+.deleteComment {
+     background-color: black;
+     color: white;
+     padding: 3px 7px 3px 7px;
+     border: 1px solid black;
+     font-family: 'Pangolin';
+     border-radius: 4px;
+     font-size: 16px;
+     font-weight: 600;
+}
+
+.editDelete {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
+
+.delete {
+     background-color: black;
+     color: white;
+     padding: 1px;
+     border: 1px solid black;
+     font-family: 'Pangolin';
+     border-radius: 4px;
+     font-size: 16px;
+     font-weight: 600;
+}
+
+.edit {
      text-align: center;
+     font-family: 'Pangolin';
+     font-size: 16px;
+}
+
+.edit-detail {
+     margin-top: 10px;
+     font-size: 14px;
+}
+
+@media only screen and (min-width: 1000px) {
+
 }

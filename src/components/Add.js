@@ -14,14 +14,16 @@ const Add =(props)=>{
         setQuestion({...question,[e.target.name]:e.target.value})
     }
 
-    
+
     return(
         <>
-         <form onSubmit={handleSubmit}>
-            <label htmlFor="question">Question:</label>
-            <input type="text" name='question' onChange={handleChange}/>
-            <input type='submit'/>
-         </form>
+          <div className="add-question-container">
+               <form className="add-question" onSubmit={handleSubmit}>
+                    <label htmlFor="question">add question</label>
+                    <input className="qField" type="text" name='question' placeholder="let's talk..." onChange={handleChange}/>
+                    <input className="addQSubmit" type='submit' />
+               </form>
+          </div>
         </>
     )
 }
