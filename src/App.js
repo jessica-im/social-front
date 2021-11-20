@@ -76,6 +76,8 @@ const App = () => {
           setUserObj({username: '', password: ''})
         }
 
+
+
      useEffect(() => {
           getQuestions()
           getComment()
@@ -83,30 +85,37 @@ const App = () => {
 
      return (
           <>
-               <h1> hello universe </h1>
+               <div className="nav">
+                    <div>sign up {signedIn ? null: <NewAccountForm />}</div>
+                    <h1> social.sesh </h1>
+                    <div>log in {signedIn ? null : <LoginForm userObj={userObj} setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}</div>
+                    {signedIn ? <button onClick={handleLogout}>Log Out</button>: null}
+               </div>
+
                {signedIn ? <Add handleCreate={handleCreate} /> : null}
-               {signedIn ? null : <LoginForm userObj={userObj}setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}
-               {signedIn ? null:<NewAccountForm />}
-               {signedIn ? <button onClick={handleLogout}>Log Out</button>: null}
-               <div className="questions">
+
+               <div className="questions-container">
                     {questions.map((question) => {
                          return (
                               <div className="question" key={question.id}>
                                    <h4>{question.question}</h4>
                                    {signedIn ? <Edit handleUpdate={handleUpdate} question={question} />:null}
                                    {signedIn ? <button onClick={handleDelete} value={question.id}>X</button>:null}
-                                   <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/>
-                                   {comments.map((comment)=>{
-                                        return (
-                                             <>
-                                             {question.id === comment.question[0] ?
-                                             <div key={comment.id}>
-                                             {comment.comment}
-                                             <button onClick={deleteComment} value={comment.id}>Delete Comment</button>
-                                             </div>: null }
-                                             </>
-                                        )
-                                   })}
+                                   <details>
+                                        <summary>comments</summary>
+                                        <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/>
+                                        {comments.map((comment)=>{
+                                             return (
+                                                  <>
+                                                  {question.id === comment.question[0] ?
+                                                  <div key={comment.id}>
+                                                  {comment.comment}
+                                                  <button onClick={deleteComment} value={comment.id}>Delete Comment</button>
+                                                  </div>: null }
+                                                  </>
+                                             )
+                                        })}
+                                   </details>
                               </div>
                          )
                     })}

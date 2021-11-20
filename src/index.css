@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+h1 {
+     font-family: 'Rampart One';
+     font-size: 100px;
+     margin: 0px;
+
+}
+
+.nav {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding-left: 20px;
+     padding-right: 20px;
+}
+
+.questions-container {
+     display: flex;
+     justify-content: center;
+     gap: 20px;
+}
+
+.question {
+     width: 300px;
+     text-align: center;
+     border: 1px solid black;
+     border-radius: 4px;
+     padding: 20px;
+}
+
+details {
+     text-align: center;
+}

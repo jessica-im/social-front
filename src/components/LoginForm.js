@@ -29,8 +29,6 @@ const LoginForm = (props) => {
 
   return (
     <div>
-      <br/>
-      <br/>
       <h4>Login</h4>
       <form onSubmit={handleSubmit}>
         <input type="text" name='username' placeholder="Username" onChange={handleChange} value={props.userObj.username}/>

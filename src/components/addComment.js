@@ -17,11 +17,11 @@ const AddComment = (props)=>{
 
     return(
         <>
-         <form onSubmit={handleSubmit}>
-            <label htmlFor="comment">Comment:</label>
-            <input type="text" name='comment' onChange={handleChange}/>
-            <input type='submit'/>
-         </form>
+              <form onSubmit={handleSubmit}>
+                 <label htmlFor="comment">Comment:</label>
+                 <input type="text" name='comment' onChange={handleChange}/>
+                 <input type='submit'/>
+              </form>
         </>
     )
 }
