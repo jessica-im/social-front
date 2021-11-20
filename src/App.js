@@ -13,6 +13,11 @@ const App = () => {
      let [user, setUser] = useState([])
      let [comments,setComments]=useState([])
      let [userObj, setUserObj] = useState( {username: '', password: ''})
+     let [hideSignIn,setHideSignIn] = useState(true)
+     let [hideLogIn,setHideLogIn] = useState(true)
+     let [hideCreate,setHideCreate]=useState(true)
+     let [randomNumber,setRandomNumber]=useState(Math.floor(Math.random()*questions.length))
+
 
      const getQuestions = () => {
           axios.get('https://social-sess-back.herokuapp.com/api/questions')
@@ -74,14 +79,39 @@ const App = () => {
      const handleLogout = () => {
           setSignedIn(false)
           setUserObj({username: '', password: ''})
+          setHideLogIn(true)
+          setHideSignIn(true)
+          setHideCreate(true)
         }
 
      const randomId = () => {
-          // return Math.floor(Math.random())
-          console.log(Math.floor(Math.random()))
+          console.log(Math.floor(Math.random()*questions.length))
+          setRandomNumber(Math.floor(Math.random()*questions.length))
+     }
+     const changeHideSignIn=()=>{
+          if (hideSignIn ==true){
+               setHideSignIn(false)
+          }else{
+               setHideSignIn(true)
+          }
+          
+     }
+     
+     const changeHideLogIn=()=>{
+          if (hideLogIn ==true){
+               setHideLogIn(false)
+          }else{
+               setHideLogIn(true)
+          }
      }
 
-     randomId()
+     const changeHideCreate =()=>{
+          if (hideCreate ==true){
+               setHideCreate(false)
+          }else{
+               setHideCreate(true)
+          }
+     }
 
      useEffect(() => {
           getQuestions()
@@ -91,22 +121,34 @@ const App = () => {
      return (
           <>
                <div className="signUp-logIn">
-                    <div>sign up {signedIn ? null: <NewAccountForm />}</div>
-                    <div>log in {signedIn ? null : <LoginForm userObj={userObj} setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}</div>
+                    {signedIn ?
+                    <div>
+                         <div onClick={changeHideCreate}>Add Question:</div>
+                         {hideCreate ?null: <Add handleCreate={handleCreate} /> }
+                    </div>
+                    : 
+                    <>
+                    <div>
+                         <div onClick={changeHideSignIn}>sign up</div> {(signedIn || hideSignIn) ? null: <NewAccountForm />}
+                    </div>
+                    <div>
+                         <div onClick={changeHideLogIn} >log in</div> {signedIn ||hideLogIn ? null : <LoginForm userObj={userObj} setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}
+                    </div>
+                    </> }
+
                     {signedIn ? <div onClick={handleLogout}>logout</div>: null}
                </div>
                <div className="title">
                     <h1> social.sesh </h1>
-               </div>
-
-               {signedIn ? <Add handleCreate={handleCreate} /> : null}
-
+               </div>               
+               <button onClick={randomId}>Randomize!</button>
                <div className="questions-container">
                     {questions.map((question) => {
-                         if (question.id === 3) {
-                              return (
-                                   <div className="question" key={question.id}>
-                                        <div className="question-div">
+                         return(
+                         <>
+                         {question.id == questions[randomNumber].id ?
+                                   <div className="question" key={question.id} >
+                                        <div className="question-div" >
                                              <h4>{question.question}</h4>
                                         </div>
                                         <details className="comments-detail">
@@ -133,10 +175,10 @@ const App = () => {
                                              {signedIn ? <button className="delete" onClick={handleDelete} value={question.id}>X</button>:null}
                                         </div>
                                    </div>
-                              )
+                              : null
                          }
-
-                    })}
+                         </>
+                    )})}
                </div>
           </>
      )

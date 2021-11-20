@@ -7,6 +7,7 @@ const Add =(props)=>{
     const handleSubmit=(e)=>{
         e.preventDefault()
         props.handleCreate(question)
+        setQuestion({question:''})
     }
 
 
@@ -20,7 +21,7 @@ const Add =(props)=>{
           <div className="add-question-container">
                <form className="add-question" onSubmit={handleSubmit}>
                     <label htmlFor="question">add question</label>
-                    <input className="qField" type="text" name='question' placeholder="let's talk..." onChange={handleChange}/>
+                    <input className="qField" type="text" name='question' value={question.question} placeholder="let's talk..." onChange={handleChange}/>
                     <input className="addQSubmit" type='submit' />
                </form>
           </div>
