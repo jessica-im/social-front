@@ -32,7 +32,7 @@ const LoginForm = (props) => {
       <form className="loginForm" onSubmit={handleSubmit}>
         <input type="text" name='username' placeholder="username" onChange={handleChange} value={props.userObj.username}/>
         <input type="password" name='password' placeholder="password" onChange={handleChange} value={props.userObj.password}/>
-        <input type="submit" value="login" />
+        <input className="button" type="submit" value="login" />
       </form>
     </div>
   )

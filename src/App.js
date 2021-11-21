@@ -126,22 +126,22 @@ const App = () => {
                <div className="signUp-logIn">
                     {signedIn ?
                     <div>
-                         <div onClick={changeHideCreate}>add question</div>
+                         <div className="button" onClick={changeHideCreate}>add question</div>
                          {hideCreate ? null: <Add handleCreate={handleCreate} setHideCreate={setHideCreate}/> }
                     </div>
                     :
                     <>
                     <div>
-                         <div onClick={changeHideSignIn}>sign up</div> {(signedIn || hideSignIn) ? null: <NewAccountForm />}
+                         <div className="button" onClick={changeHideSignIn}>sign up</div> {(signedIn || hideSignIn) ? null: <NewAccountForm />}
                     </div>
                     <div>
-                         <div className="loginButton" onClick={changeHideLogIn}>log in</div> {signedIn ||hideLogIn ? null : <LoginForm userObj={userObj} setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}
+                         <div className="loginButton button" onClick={changeHideLogIn}>log in</div> {signedIn ||hideLogIn ? null : <LoginForm userObj={userObj} setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}
                     </div>
                     </> }
 
-                    {signedIn ? <div onClick={handleLogout}>logout</div>: null}
+                    {signedIn ? <div className="button" onClick={handleLogout}>logout</div>: null}
                </div>
-               <div className="randomQ" onClick={randomId}>refresh your sesh</div>
+               <div className="randomQ button" onClick={randomId}>refresh your sesh</div>
                <div className="questions-container">
                     {questions.map((question) => {
                          return(
@@ -152,8 +152,8 @@ const App = () => {
                                              <p>{question.question}</p>
                                         </div>
                                         <details className="comments-detail">
-                                             <summary className="comments-summary">comments</summary>
-                                             <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/>
+                                             <summary className="comments-summary button">comments</summary>
+                                             {signedIn ? <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/> : null}
                                              <div className="comments-container">
                                                   {comments.map((comment)=>{
                                                        return (
@@ -162,7 +162,7 @@ const App = () => {
                                                                  {question.id === comment.question[0] ?
                                                                  <div className="comment-container" key={comment.id}>
                                                                       <div className="comment">{comment.comment}</div>
-                                                                      <button className="deleteComment" onClick={deleteComment} value={comment.id}>X</button>
+                                                                      {signedIn ? <button className="deleteComment button" onClick={deleteComment} value={comment.id}>X</button> : null}
                                                                  </div>: null }
                                                             </div>
                                                             </>
@@ -172,7 +172,7 @@ const App = () => {
                                         </details>
                                         <div className="editDelete">
                                              {signedIn ? <Edit handleUpdate={handleUpdate} question={question} />:null}
-                                             {signedIn ? <button className="delete" onClick={handleDelete} value={question.id}>X</button>:null}
+                                             {signedIn ? <button className="delete button" onClick={handleDelete} value={question.id}>X</button>:null}
                                         </div>
                                    </div>
                               : null

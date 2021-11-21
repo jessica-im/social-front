@@ -15,11 +15,11 @@ const Edit = (props) => {
      return (
           <>
                <details>
-                    <summary className="edit-detail">edit question</summary>
+                    <summary className="edit-detail button">edit question</summary>
                     <form className="edit" onSubmit={handleSubmit}>
                          <label htmlFor="question"></label>
                          <input className="edit-field" type="text" name="question" onChange={handleChange} value={question.question} />
-                         <input type="submit" value="edit"/>
+                         <input className="button" type="submit" value="edit"/>
                     </form>
                </details>
           </>
