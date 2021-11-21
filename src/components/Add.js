@@ -8,6 +8,7 @@ const Add =(props)=>{
         e.preventDefault()
         props.handleCreate(question)
         setQuestion({question:''})
+        props.setHideCreate(true)
     }
 
 

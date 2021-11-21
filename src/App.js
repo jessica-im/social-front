@@ -94,7 +94,6 @@ const App = () => {
           }else{
                setHideSignIn(true)
           }
-
      }
 
      const changeHideLogIn=()=>{
@@ -128,7 +127,7 @@ const App = () => {
                     {signedIn ?
                     <div>
                          <div onClick={changeHideCreate}>add question</div>
-                         {hideCreate ? null: <Add handleCreate={handleCreate} /> }
+                         {hideCreate ? null: <Add handleCreate={handleCreate} setHideCreate={setHideCreate}/> }
                     </div>
                     :
                     <>

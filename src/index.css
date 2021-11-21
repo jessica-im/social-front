@@ -215,9 +215,43 @@ input[type=text] {
      font-size: 14px;
 }
 
-
-@media only screen and (max-width: 1000px) {
+@media only screen and (min-width: 700px) {
      h1 {
           font-size: 60px;
      }
+
+     .add-question {
+          position: absolute;
+          left: 1px;
+     }
+
+     input[type=text] {
+          font-size: 20px;
+     }
+
+     input[type=password] {
+          font-size: 20px;
+     }
+
+     input[type=submit] {
+          font-size: 20px;
+     }
+
+     .question {
+          width: 600px;
+     }
+
+     .question-div {
+          font-size: 60px;
+     }
+
+     .comment-container {
+          font-size: 18px;
+     }
+
+     .comments-container {
+          overflow: scroll;
+          max-height: 200px;
+     }
+
 }
