@@ -7,6 +7,8 @@ const Add =(props)=>{
     const handleSubmit=(e)=>{
         e.preventDefault()
         props.handleCreate(question)
+        setQuestion({question:''})
+        props.setHideCreate(true)
     }
 
 
@@ -14,14 +16,16 @@ const Add =(props)=>{
         setQuestion({...question,[e.target.name]:e.target.value})
     }
 
-    
+
     return(
         <>
-         <form onSubmit={handleSubmit}>
-            <label htmlFor="question">Question:</label>
-            <input type="text" name='question' onChange={handleChange}/>
-            <input type='submit'/>
-         </form>
+          <div className="add-question-container">
+               <form className="add-question" onSubmit={handleSubmit}>
+                    <label htmlFor="question"></label>
+                    <input className="qField" type="text" name='question' value={question.question} placeholder="let's talk..." onChange={handleChange}/>
+                    <input type="submit" value="submit" />
+               </form>
+          </div>
         </>
     )
 }

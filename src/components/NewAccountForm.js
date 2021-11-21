@@ -23,14 +23,10 @@ const NewAccountForm = (props) => {
 
   return (
     <div>
-      <h4>Create Account</h4>
-
-      <form onSubmit={handleSubmit}>
-        <input type="text" name='username' placeholder="Username" onChange={handleChange} value={newUser.username}/>
-        <br/>
-        <input type="password" name='password' placeholder="Password" onChange={handleChange} value={newUser.password}/>
-        <br/>
-        <input type="submit" value="Create Account" />
+      <form className="createAccountForm" id="sign-up" onSubmit={handleSubmit}>
+        <input type="text" name='username' placeholder="username" onChange={handleChange} value={newUser.username}/>
+        <input type="password" name='password' placeholder="password" onChange={handleChange} value={newUser.password}/>
+        <input className="button" type="submit" value="create account" />
       </form>
     </div>
   )

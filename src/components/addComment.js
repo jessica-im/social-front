@@ -8,6 +8,7 @@ const AddComment = (props)=>{
     const handleSubmit=(e)=>{
         e.preventDefault()
         props.createComment(comment)
+        setComment({comment:''})
     }
 
     const handleChange =(e)=>{
@@ -17,11 +18,10 @@ const AddComment = (props)=>{
 
     return(
         <>
-         <form onSubmit={handleSubmit}>
-            <label htmlFor="comment">Comment:</label>
-            <input type="text" name='comment' onChange={handleChange}/>
-            <input type='submit'/>
-         </form>
+              <form className="addComment" onSubmit={handleSubmit}>
+                 <input className="comment-input" type="text" name='comment' placeholder="add a comment" value={comment.comment} onChange={handleChange}/>
+                 <input className="button" type='submit' value="submit"/>
+              </form>
         </>
     )
 }

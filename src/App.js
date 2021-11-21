@@ -13,12 +13,17 @@ const App = () => {
      let [user, setUser] = useState([])
      let [comments,setComments]=useState([])
      let [userObj, setUserObj] = useState( {username: '', password: ''})
+     let [hideSignIn,setHideSignIn] = useState(true)
+     let [hideLogIn,setHideLogIn] = useState(true)
+     let [hideCreate,setHideCreate]=useState(true)
+     let [randomNumber,setRandomNumber]=useState(Math.floor(Math.random()*questions.length))
+
 
      const getQuestions = () => {
           axios.get('https://social-sess-back.herokuapp.com/api/questions')
           .then(
                (response) => setQuestions(response.data),
-               console.log(questions),
+               // console.log(questions),
                (error) => console.error(error)
           )
           .catch((error) => console.error(error))
@@ -27,7 +32,7 @@ const App = () => {
      const handleCreate = (addQuestion) => {
           axios.post('https://social-sess-back.herokuapp.com/api/questions', addQuestion)
           .then((response) => {
-               console.log(response)
+               // console.log(response)
                getQuestions()
           })
      }
@@ -49,9 +54,9 @@ const App = () => {
 
      const getComment=()=>{
           axios.get('https://social-sess-back.herokuapp.com/api/comments').then((response)=>{
-               console.log(response.data)
+               // console.log(response.data)
                setComments(response.data)
-               console.log(comments)
+               // console.log(comments)
 
           })
      }
@@ -64,7 +69,7 @@ const App = () => {
      }
 
      const createComment = (addComment,question) => {
-        console.log(addComment)
+        // console.log(addComment)
           axios.post('https://social-sess-back.herokuapp.com/api/comments', addComment)
           .then((response) => {
             getComment()
@@ -74,7 +79,38 @@ const App = () => {
      const handleLogout = () => {
           setSignedIn(false)
           setUserObj({username: '', password: ''})
+          setHideLogIn(true)
+          setHideSignIn(true)
+          setHideCreate(true)
         }
+
+     const randomId = () => {
+          console.log(Math.floor(Math.random()*questions.length))
+          setRandomNumber(Math.floor(Math.random()*questions.length))
+     }
+     const changeHideSignIn=()=>{
+          if (hideSignIn ==true){
+               setHideSignIn(false)
+          }else{
+               setHideSignIn(true)
+          }
+     }
+
+     const changeHideLogIn=()=>{
+          if (hideLogIn ==true){
+               setHideLogIn(false)
+          }else{
+               setHideLogIn(true)
+          }
+     }
+
+     const changeHideCreate =()=>{
+          if (hideCreate ==true){
+               setHideCreate(false)
+          }else{
+               setHideCreate(true)
+          }
+     }
 
      useEffect(() => {
           getQuestions()
@@ -83,33 +119,66 @@ const App = () => {
 
      return (
           <>
-               <h1> hello universe </h1>
-               {signedIn ? <Add handleCreate={handleCreate} /> : null}
-               {signedIn ? null : <LoginForm userObj={userObj}setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}
-               {signedIn ? null:<NewAccountForm />}
-               {signedIn ? <button onClick={handleLogout}>Log Out</button>: null}
-               <div className="questions">
+
+               <div className="title">
+                    <h1> social.sesh </h1>
+               </div>
+               <div className="signUp-logIn">
+                    {signedIn ?
+                    <div>
+                         <div className="button" onClick={changeHideCreate}>add question</div>
+                         {hideCreate ? null: <Add handleCreate={handleCreate} setHideCreate={setHideCreate}/> }
+                    </div>
+                    :
+                    <>
+                    <div>
+                         <div className="button" onClick={changeHideSignIn}>sign up</div> {(signedIn || hideSignIn) ? null: <NewAccountForm />}
+                    </div>
+                    <div>
+                         <div className="loginButton button" onClick={changeHideLogIn}>log in</div> {signedIn ||hideLogIn ? null : <LoginForm userObj={userObj} setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}
+                    </div>
+                    </> }
+
+                    {signedIn ? <div className="button" onClick={handleLogout}>logout</div>: null}
+               </div>
+               <div className="randomQ button" onClick={randomId}>refresh your sesh</div>
+               <div className="questions-container">
                     {questions.map((question) => {
-                         return (
-                              <div className="question" key={question.id}>
-                                   <h4>{question.question}</h4>
-                                   {signedIn ? <Edit handleUpdate={handleUpdate} question={question} />:null}
-                                   {signedIn ? <button onClick={handleDelete} value={question.id}>X</button>:null}
-                                   <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/>
-                                   {comments.map((comment)=>{
-                                        return (
-                                             <>
-                                             {question.id === comment.question[0] ?
-                                             <div key={comment.id}>
-                                             {comment.comment}
-                                             <button onClick={deleteComment} value={comment.id}>Delete Comment</button>
-                                             </div>: null }
-                                             </>
-                                        )
-                                   })}
-                              </div>
-                         )
-                    })}
+                         return(
+                         <>
+                         {question.id == questions[randomNumber].id ?
+                                   <div className="question" key={question.id} >
+                                        <div className="question-div" >
+                                             <p>{question.question}</p>
+                                        </div>
+                                        <details className="comments-detail">
+                                             <summary className="comments-summary button">comments</summary>
+                                             {signedIn ? <AddComment createComment={createComment} question={question} handleUpdate={handleUpdate} setQuestions={setQuestions}/> : null}
+                                             <div className="comments-container">
+                                                  {comments.map((comment)=>{
+                                                       return (
+                                                            <>
+                                                            <div className="comments-container">
+                                                                 {question.id === comment.question[0] ?
+                                                                 <div className="comment-container" key={comment.id}>
+                                                                      <div className="comment">{comment.comment}</div>
+                                                                      {signedIn ? <button className="deleteComment button" onClick={deleteComment} value={comment.id}>X</button> : null}
+                                                                 </div>: null }
+                                                            </div>
+                                                            </>
+                                                       )
+                                                  })}
+                                             </div>
+                                        </details>
+                                        <div className="editDelete">
+                                             {signedIn ? <Edit handleUpdate={handleUpdate} question={question} />:null}
+                                             {signedIn ? <button className="delete button" onClick={handleDelete} value={question.id}>X</button>:null}
+                                        </div>
+                                   </div>
+                              : null
+                         }
+                         </>
+                    )})}
                </div>
           </>
      )
