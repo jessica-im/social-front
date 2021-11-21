@@ -29,13 +29,10 @@ const LoginForm = (props) => {
 
   return (
     <div>
-      <h4>Login</h4>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name='username' placeholder="Username" onChange={handleChange} value={props.userObj.username}/>
-        <br/>
-        <input type="password" name='password' placeholder="Password" onChange={handleChange} value={props.userObj.password}/>
-        <br/>
-        <input type="submit" value="Login" />
+      <form className="loginForm" onSubmit={handleSubmit}>
+        <input type="text" name='username' placeholder="username" onChange={handleChange} value={props.userObj.username}/>
+        <input type="password" name='password' placeholder="password" onChange={handleChange} value={props.userObj.password}/>
+        <input type="submit" value="login" />
       </form>
     </div>
   )

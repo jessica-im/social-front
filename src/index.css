@@ -31,6 +31,44 @@ h1 {
      color: black;
      padding: 8px;
      font-family: 'Pangolin';
+     text-shadow: 0 0 3px lavender;
+}
+
+input[type=submit] {
+     border-radius: 4px;
+     color: black;
+     font-family: 'Pangolin';
+     font-size: 16px;
+     padding: 4px 6px;
+     background-color: #fdb;
+     border: none;
+     margin-left: 5px;
+}
+
+input[type=text] {
+     font-family: 'Pangolin';
+     font-size: 16px;
+}
+
+.loginButton {
+     display: flex;
+     justify-content: flex-end;
+}
+
+.loginForm {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     position: absolute;
+     right: 5px;
+}
+
+.createAccountForm {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;
+     position: absolute;
+     left: 5px;
 }
 
 .title {
@@ -43,17 +81,18 @@ h1 {
      display: flex;
      justify-content: center;
      text-transform: lowercase;
-     padding: 50px;
 }
 
 .add-question {
      display: flex;
-     flex-flow: column;
      align-items: center;
      gap: 10px;
      font-family: 'Pangolin';
      font-weight: 600;
-     font-size: 25px;
+     font-size: 20px;
+     position: absolute;
+     left: 65px;
+     padding-top: 15px;
 }
 
 .qField {
@@ -76,80 +115,80 @@ h1 {
      font-weight: 600;
 }
 
+.randomQ {
+     margin: 0 auto;
+     margin-top: 70px;
+     width: 150px;
+     text-align: center;
+     font-family: 'Pangolin';
+     font-size: 20px;
+     font-weight: 500;
+     background-color: #fdb;
+     border: 1px solid lavender;
+     box-shadow: 3px 3px 2px 1px lavender;
+     border-radius: 6px;
+     color: black;
+     padding: 10px;
+}
+
 .questions-container {
      display: flex;
      justify-content: center;
      gap: 20px;
 }
 
-
-
 .question {
      display: flex;
      flex-direction: column;
      width: 300px;
      font-family: 'Pangolin';
-     font-size: 80px;
      text-align: center;
-     padding: 20px;
+     margin-top: 40px;
 }
 
 .question-div {
      border: 1px solid black;
      border-radius: 4px;
-}
-
-
-.addESubmit {
-     text-transform: lowercase;
-     background-color: black;
-     color: white;
-     padding: 3px 7px 3px 7px;
-     border: 1px solid black;
-     width: 100px;
-     font-family: 'Pangolin';
-     border-radius: 4px;
-     font-size: 16px;
      font-weight: 600;
-     margin-left: 10px;
+     font-size: 40px;
+     padding: 0 20px;
 }
-
 
 .comments-detail {
      font-size: 20px;
      border: 1px solid #fdb;
-     padding-bottom: 10px;
 }
 
 .comments-summary {
      background-color: #fdb;
 }
 
-
 .addComment {
      margin-top: 10px;
      margin-bottom: 10px;
 }
 
+.comments-container {
+     overflow: scroll;
+     max-height: 100px;
+}
 
 .comment-container {
      display: flex;
      justify-content: space-between;
      border-bottom: 2px solid #ccc;
-     padding: 10px 5px;
+     padding: 5px 5px;
      margin-left: 10px;
      margin-right: 10px;
+     font-size: 16px;
 }
 
-
 .deleteComment {
-     background-color: black;
-     color: white;
-     padding: 3px 7px 3px 7px;
-     border: 1px solid black;
+     background-color: white;
+     border: none;
      font-family: 'Pangolin';
      border-radius: 4px;
-     font-size: 16px;
+     font-size: 13px;
      font-weight: 600;
 }
 
@@ -157,30 +196,28 @@ h1 {
      display: flex;
      justify-content: space-between;
      align-items: center;
+     padding: 1px;
+     margin-top: 3px;
 }
 
 .delete {
-     background-color: black;
-     color: white;
-     padding: 1px;
-     border: 1px solid black;
+     background-color: white;
+     color: red;
+     padding: 3px 5px;
+     border: none;
      font-family: 'Pangolin';
      border-radius: 4px;
      font-size: 16px;
      font-weight: 600;
 }
 
-.edit {
-     text-align: center;
-     font-family: 'Pangolin';
-     font-size: 16px;
-}
-
 .edit-detail {
-     margin-top: 10px;
      font-size: 14px;
 }
 
-@media only screen and (min-width: 1000px) {
 
+@media only screen and (max-width: 1000px) {
+     h1 {
+          font-size: 60px;
+     }
 }

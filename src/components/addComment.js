@@ -20,7 +20,7 @@ const AddComment = (props)=>{
         <>
               <form className="addComment" onSubmit={handleSubmit}>
                  <input type="text" name='comment' placeholder="add a comment" value={comment.comment} onChange={handleChange}/>
-                 <input type='submit'/>
+                 <input type='submit' value="submit"/>
               </form>
         </>
     )

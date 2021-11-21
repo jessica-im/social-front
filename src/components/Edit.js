@@ -18,8 +18,8 @@ const Edit = (props) => {
                     <summary className="edit-detail">edit question</summary>
                     <form className="edit" onSubmit={handleSubmit}>
                          <label htmlFor="question"></label>
-                         <input className="edit" type="text" name="question" onChange={handleChange} value={question.question} />
-                         <input className="addESubmit" type="submit" />
+                         <input type="text" name="question" onChange={handleChange} value={question.question} />
+                         <input  type="submit" value="edit"/>
                     </form>
                </details>
           </>

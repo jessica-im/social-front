@@ -20,9 +20,9 @@ const Add =(props)=>{
         <>
           <div className="add-question-container">
                <form className="add-question" onSubmit={handleSubmit}>
-                    <label htmlFor="question">add question</label>
+                    <label htmlFor="question"></label>
                     <input className="qField" type="text" name='question' value={question.question} placeholder="let's talk..." onChange={handleChange}/>
-                    <input className="addQSubmit" type='submit' />
+                    <input type="submit" value="submit" />
                </form>
           </div>
         </>

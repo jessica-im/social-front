@@ -94,9 +94,9 @@ const App = () => {
           }else{
                setHideSignIn(true)
           }
-          
+
      }
-     
+
      const changeHideLogIn=()=>{
           if (hideLogIn ==true){
                setHideLogIn(false)
@@ -120,28 +120,29 @@ const App = () => {
 
      return (
           <>
+
+               <div className="title">
+                    <h1> social.sesh </h1>
+               </div>
                <div className="signUp-logIn">
                     {signedIn ?
                     <div>
-                         <div onClick={changeHideCreate}>Add Question:</div>
-                         {hideCreate ?null: <Add handleCreate={handleCreate} /> }
+                         <div onClick={changeHideCreate}>add question</div>
+                         {hideCreate ? null: <Add handleCreate={handleCreate} /> }
                     </div>
-                    : 
+                    :
                     <>
                     <div>
                          <div onClick={changeHideSignIn}>sign up</div> {(signedIn || hideSignIn) ? null: <NewAccountForm />}
                     </div>
                     <div>
-                         <div onClick={changeHideLogIn} >log in</div> {signedIn ||hideLogIn ? null : <LoginForm userObj={userObj} setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}
+                         <div className="loginButton" onClick={changeHideLogIn}>log in</div> {signedIn ||hideLogIn ? null : <LoginForm userObj={userObj} setUserObj={setUserObj} setSignedIn={setSignedIn} user={user} setUser={setUser}/>}
                     </div>
                     </> }
 
                     {signedIn ? <div onClick={handleLogout}>logout</div>: null}
                </div>
-               <div className="title">
-                    <h1> social.sesh </h1>
-               </div>               
-               <button onClick={randomId}>Randomize!</button>
+               <div className="randomQ" onClick={randomId}>refresh your sesh</div>
                <div className="questions-container">
                     {questions.map((question) => {
                          return(
@@ -149,7 +150,7 @@ const App = () => {
                          {question.id == questions[randomNumber].id ?
                                    <div className="question" key={question.id} >
                                         <div className="question-div" >
-                                             <h4>{question.question}</h4>
+                                             <p>{question.question}</p>
                                         </div>
                                         <details className="comments-detail">
                                              <summary className="comments-summary">comments</summary>
