@@ -16,6 +16,7 @@ h1 {
      font-family: 'Rampart One';
      font-size: 40px;
      margin: 0px;
+     animation: color-change 5s infinite;
 }
 
 p {
