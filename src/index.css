@@ -18,6 +18,10 @@ h1 {
      margin: 0px;
 }
 
+p {
+     text-transform: lowercase;
+}
+
 .title {
      background-color: black;
      color: white;
@@ -41,12 +45,16 @@ input[type=submit] {
      font-size: 16px;
      padding: 4px 6px;
      background-color: #fdb;
-     border: none;
+     border: 2px solid lavender;
      margin-left: 5px;
 }
 
 input[type=text] {
      font-family: 'Pangolin';
+     font-size: 16px;
+}
+
+input[type=password] {
      font-size: 16px;
 }
 
@@ -124,11 +132,12 @@ input[type=text] {
      font-size: 20px;
      font-weight: 500;
      background-color: #fdb;
-     border: 1px solid lavender;
-     box-shadow: 3px 3px 2px 1px lavender;
+     border: 2px solid lavender;
+     box-shadow: 2px 2px 5px lavender;
      border-radius: 6px;
      color: black;
      padding: 10px;
+     transition: .5s;
 }
 
 .questions-container {
@@ -183,6 +192,10 @@ input[type=text] {
      font-size: 16px;
 }
 
+.comment {
+     text-align: left;
+}
+
 .deleteComment {
      background-color: white;
      border: none;
@@ -212,17 +225,23 @@ input[type=text] {
 }
 
 .edit-detail {
+     text-align: left;
      font-size: 14px;
 }
 
 @media only screen and (min-width: 700px) {
      h1 {
           font-size: 60px;
+          animation: color-change 5s infinite;
      }
 
      .add-question {
           position: absolute;
           left: 1px;
+     }
+
+     .signUp-logIn {
+          font-size: 20px;
      }
 
      input[type=text] {
@@ -254,4 +273,38 @@ input[type=text] {
           max-height: 200px;
      }
 
+     .comment-input {
+          width: 350px;
+     }
+
+     .edit-detail {
+          font-size: 14px;
+          text-align: left;
+     }
+
+     .edit-field {
+          width: 350px;
+     }
+
+     .randomQ:hover {
+          background-color: lavender;
+          border: 2px solid lavender;
+          box-shadow: 3px 3px 5px 2px #fdb;
+     }
+
+     .deleteComment:hover {
+          color: red;
+     }
+
+     .delete:hover {
+          color: black;
+          text-shadow: 1px 1px 5px red;
+     }
+}
+
+@keyframes color-change {
+    0% { color: #6495ED; }
+    45% { color: #FFDAB9; }
+    65% { color: #D8BFD8; }
+    100% { color: #000; }
 }
