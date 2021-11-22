@@ -183,8 +183,8 @@ input[type=password] {
 }
 
 .comments-container {
-     overflow: scroll;
-     max-height: 100px;
+     /* overflow: scroll;
+     /* max-height: 100px; */
 }
 
 .comment-container {
@@ -274,10 +274,10 @@ input[type=password] {
           font-size: 18px;
      }
 
-     .comments-container {
+     /* .comments-container {
           overflow: scroll;
           max-height: 200px;
-     }
+     } */
 
      .comment-input {
           width: 350px;
